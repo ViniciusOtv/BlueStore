@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Loja Virtual";
+
+}
+
+@model LojaVirtual.Models.HomeIndexViewModel
+
+
+@if (Model.Produtos.Length == 0)
+{
+    <div class="row">
+        <span>Não há produto</span>
+    </div>
+
+}
+else
+{
+    <div class="row">
+        @foreach (var item in Model.Produtos)
+        {
+
+            <div class="card espacos shadow-lg p-3 mb-5 bg-white rounded " style="width: 18rem; margin-top: 50px;">
+                <img class="card-img-top" src="@item.Imagem"
+                     alt="Imagens dos Produtos">
+                <div class="card-body">
+                    @* <h5 class="card-title">@Model.NomeCategoria(item)</h5>*@
+                   <h4 class="card-title" style="color: rgb(118, 118, 118);">
+                       <strong>@item.Nome</strong>
+                   </h4>
+                    <p class="card-text" style="color:  rgb(118, 118, 118)"> 
+                        <strong>@item.Descricao</strong>
+                        </p>
+                    <p class="Preco" style="color: rgb(3, 168, 124)">
+                        <b>R$ @item.Preco.ToString()</b>
+                    </p>
+                    <div class="align-text-bottom">
+                        <a class="btn btn-primary card-img-bottom" style="background-color: #00838F" href="/home/additem/@item.Id">Adicionar ao Carrinho</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

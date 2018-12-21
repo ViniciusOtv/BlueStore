@@ -1,0 +1,129 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ecomerce</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    @RenderSection("scripts", required: false)
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(3, 168, 124, 0.3); margin-bottom: 35px">
+        @*rgba(3, 168, 124, 0.3);*@
+        <a class="navbar-brand nav-font" href="/Home/Index/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+                aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link nav-font" href="#">
+                        Produtos
+                        <span class="sr-only"></span>
+                    </a>
+                </li>
+                <li class="navbar-light bg-light nav-item dropdown">
+                    <a class="nav-link dropdown-toggle nav-font" style="background-color: rgba(3, 168, 124, 0.3)" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Categorias
+                    </a>
+
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+                        @foreach (var item in ViewBag.Categorias)
+                        {
+
+                            if (item.Id == ViewBag.CategoriaSelecionada)
+                            {
+                                <a class="dropdown-item" href="/Home/Index/?@item.Id">@item.Nome</a>
+                            }
+                            else
+                            {
+                                <a class="dropdown-item" href="/Home/Index/@item.Id">@item.Nome</a>
+                            }
+
+                        }
+                    </div>
+
+                </li>
+            </ul>
+           @Html.Partial("_LoginPartial")
+          
+            <div class=".button-card">
+                <span class=".button-card", style="margin-right: 100px">
+                    <a href="/Checkout">
+                        <img src="~/imagens/cart.png" />
+                    </a>   
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer class="page-footer font-small cyan darken-3">
+
+            <!-- Footer Elements -->
+            <div class="container">
+
+                <!-- Grid row-->
+                <div class="row footer">
+
+                    <!-- Grid column -->
+                    <div class="col-md-12 py-5">
+                        <div class="mb-5 flex-center">
+
+                            <!-- Facebook -->
+                            <a class="fb-ic">
+                                <i class="fa fa-facebook fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!-- Twitter -->
+                            <a class="tw-ic">
+                                <i class="fa fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!-- Google +-->
+                            <a class="gplus-ic">
+                                <i class="fa fa-google-plus fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Linkedin -->
+                            <a class="li-ic">
+                                <i class="fa fa-linkedin fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Instagram-->
+                            <a class="ins-ic">
+                                <i class="fa fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Pinterest-->
+                            <a class="pin-ic">
+                                <i class="fa fa-pinterest fa-lg white-text fa-2x"> </i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row-->
+            </div>
+            <!-- Footer Elements -->
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">
+                © 2018 Copyright:
+                <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+            </div>
+
+            <!-- Copyright -->
+        </footer>
+    </div>
+</body>
+</html>
